@@ -76,10 +76,14 @@ docker pull linuxmint75/rentalservice:1.0
 - Run: `docker run -d --rm -p 8081:80 --name firstname-service firstname-service:latest`
 - Test: ouvrir http://localhost:8081 dans votre navigateur (réponse: "Jess")
 
-- Publication Docker Hub:
-	- Tag: `docker tag firstname-service:latest <votre-utilisateur>/firstname-service:latest`
-	- Login: `docker login -u <votre-utilisateur>`
-	- Push: `docker push <votre-utilisateur>/firstname-service:latest`
+### Publication Docker Hub
+- Tag: `docker tag firstname-service:latest linuxmint75/firstname-service:latest`
+- Push: `docker push linuxmint75/firstname-service:latest`
 
-- Lien de l'image Docker: [À compléter après publication]
+- Lien de l'image Docker: https://hub.docker.com/r/linuxmint75/firstname-service
+
+### Notes utiles
+- Contexte Docker Desktop: `docker context use desktop-linux`
+- Arrêt du conteneur: `docker stop firstname-service`
+- Chemin du service: `RentalService/php-service`
 
