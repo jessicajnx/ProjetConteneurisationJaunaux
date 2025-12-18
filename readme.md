@@ -95,17 +95,39 @@ docker pull linuxmint75/rentalservice:1.0
 
 ## Docker Compose (services indépendants + communication)
 
+### Démarrage rapide
+```powershell
+# Arrêter les anciens conteneurs (si besoin)
+docker compose down
+
+# Rebuild les images et démarrer
+docker compose build --no-cache
+docker compose up -d
+
+# Vérifier le statut
+docker compose ps
+```
+
+### Test des services
+- **PHP seul**: http://localhost:8081 → `Jess`
+- **Java seul**: http://localhost:8080/bonjour → `bonjour`
+- **Communication Java→PHP**: http://localhost:8080/bonjour-php → `bonjour Jess`
+
+### Arrêter les services
+```powershell
+docker compose down
+```
+
+### Architecture
 - Fichier: `docker-compose.yml`
-- Build: `docker compose build`
-- Up: `docker compose up -d`
-- Test:
-  - PHP: http://localhost:8081 → "Jess"
-  - Java: http://localhost:8080/bonjour → "bonjour"
-  - Java→PHP: http://localhost:8080/bonjour-php → "bonjour Jess"
-- Down: `docker compose down`
+- Services:
+  - `php-service`: PHP 8.2 Apache (port 8081)
+  - `rentalservice`: Spring Boot Java (port 8080)
+- Le service Java appelle le service PHP via `http://php-service/` (résolution DNS interne Docker)
 
 ### Notes utiles
 - Contexte Docker Desktop: `docker context use desktop-linux`
 - Arrêt du conteneur: `docker stop firstname-service`
-- Chemin du service: `php-service`
+- Chemin du service PHP: `php-service`
+- Logs en temps réel: `docker compose logs -f`
 
