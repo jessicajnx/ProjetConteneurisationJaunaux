@@ -72,7 +72,7 @@ docker pull linuxmint75/rentalservice:1.0
 
 ## Service PHP (retour du prénom)
 
-- Build: `docker build -t firstname-service:latest RentalService/php-service`
+- Build: `docker build -t firstname-service:latest php-service`
 - Run: `docker run -d --rm -p 8081:80 --name firstname-service firstname-service:latest`
 - Test: ouvrir http://localhost:8081 dans votre navigateur (réponse: "Jess")
 
@@ -85,5 +85,5 @@ docker pull linuxmint75/rentalservice:1.0
 ### Notes utiles
 - Contexte Docker Desktop: `docker context use desktop-linux`
 - Arrêt du conteneur: `docker stop firstname-service`
-- Chemin du service: `RentalService/php-service`
+- Chemin du service: `php-service`
 
