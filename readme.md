@@ -82,6 +82,28 @@ docker pull linuxmint75/rentalservice:1.0
 
 - Lien de l'image Docker: https://hub.docker.com/r/linuxmint75/firstname-service
 
+## Service Java (Spring Boot)
+
+- Build JAR:
+  - `cd RentalService`
+  - `gradlew.bat clean build`
+- Build image: `docker build -t rentalservice:latest RentalService`
+- Run: `docker run -d --rm -p 8080:8080 --name rentalservice rentalservice:latest`
+- Test:
+  - http://localhost:8080/bonjour → "bonjour"
+  - http://localhost:8080/bonjour-php → "bonjour Jess" (appelle le service PHP)
+
+## Docker Compose (services indépendants + communication)
+
+- Fichier: `docker-compose.yml`
+- Build: `docker compose build`
+- Up: `docker compose up -d`
+- Test:
+  - PHP: http://localhost:8081 → "Jess"
+  - Java: http://localhost:8080/bonjour → "bonjour"
+  - Java→PHP: http://localhost:8080/bonjour-php → "bonjour Jess"
+- Down: `docker compose down`
+
 ### Notes utiles
 - Contexte Docker Desktop: `docker context use desktop-linux`
 - Arrêt du conteneur: `docker stop firstname-service`

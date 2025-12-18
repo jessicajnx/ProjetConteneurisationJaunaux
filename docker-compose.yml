@@ -1,0 +1,18 @@
+version: "3.9"
+services:
+  rentalservice:
+    build:
+      context: ./RentalService
+    image: rentalservice:latest
+    container_name: rentalservice
+    ports:
+      - "8080:8080"
+    depends_on:
+      - php-service
+  php-service:
+    build:
+      context: ./php-service
+    image: firstname-service:latest
+    container_name: php-service
+    ports:
+      - "8081:80"
