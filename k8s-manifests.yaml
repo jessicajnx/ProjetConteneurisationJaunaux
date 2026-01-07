@@ -45,7 +45,7 @@ kind: Service
 metadata:
   name: php-service
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: php-service
   ports:
