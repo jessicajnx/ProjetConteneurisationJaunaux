@@ -3,22 +3,22 @@ kind: Ingress
 metadata:
   name: gateway-ingress
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
     - host: myservice.info
       http:
         paths:
-          - path: /php
-            pathType: Prefix
+          - path: /php(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: php-service
                 port:
                   number: 80
-          - path: /rental
-            pathType: Prefix
+          - path: /rental(/|$)(.*)
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: rentalservice
